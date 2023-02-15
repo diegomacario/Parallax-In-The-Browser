@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.6/control_utils.css" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="demo.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.6/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_detection.js" crossorigin="anonymous"></script><link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+<style>
+  canvas.emscripten {
+      border: 0 none;
+      background-color: #000;
+      outline: 0;
+  }
+
+  #canvas_container {
+      display: flex;
+      height: 100vw;
+      width: 100vw;
+  }
+
+  #loading_container {
+      display: none;
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+
+  #webgl_unsupported_popup {
+      background-image: linear-gradient(to right, red, orange);
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 15px;
+      display: none;
+  }
+
+  .container {
+      width: 100vw;
+      height: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color:rgba(0, 0, 0, 0.50);
+  }
+</style>
+
+<div class="container">
+    <video class="input_video"></video>
+    <!--<div class="canvas-container">
+      <canvas class="output_canvas" width="1280px" height="720px">
+      </canvas>
+    </div>-->
+    <div class="loading">
+      <div class="spinner"></div>
+      <div class="message">
+        🚀
+      </div>
+    </div>
+  </div>
+  <div class="control-panel">
+  </div>
+
+  <div id="loading_container">
+    <div class=spinner id=spinner></div>
+    <div id=status>Downloading...</div>
+    <div class=emscripten><progress hidden id=progress max=100 value=0></progress></div>
+  </div>
+
+  <div id="webgl_unsupported_popup">
+    Woops! Your browser doesn't support WebGL 2.0 - Please try using Chrome or Firefox.
+  </div>
+
+  <div id="canvas_container">
+      <canvas class="emscripten" id="canvas" oncontextmenu=event.preventDefault() tabindex=-1></canvas>
+  </div>
+
+  <script src=Parallax-In-The-Browser.js></script>
+
+  <script type="module" src="./Rendering.js"></script>
+  <script type="module" src="./Face-Tracking.js"></script>
+</body>
+
+</html>
